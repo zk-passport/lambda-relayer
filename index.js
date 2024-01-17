@@ -7,6 +7,8 @@ exports.handler = async function(event) {
     const provider =
       chain === "mumbai"
       ? new ethers.JsonRpcProvider("https://polygon-mumbai-bor.publicnode.com")
+      : chain === "sepolia"
+      ? new ethers.JsonRpcProvider("https://gateway.tenderly.co/public/sepolia")
       : new ethers.JsonRpcProvider("https://polygon-mainnet.g.alchemy.com/v2/nt_Vk273qpsz3qIEWkHi_ACuCXOXNdro");
     
     const signer = new ethers.Wallet(process.env.PKEY, provider);
