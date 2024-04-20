@@ -9,7 +9,9 @@ exports.handler = async function(event) {
       ? new ethers.JsonRpcProvider("https://polygon-mumbai-bor.publicnode.com")
       : chain === "sepolia"
       ? new ethers.JsonRpcProvider("https://gateway.tenderly.co/public/sepolia")
-      : new ethers.JsonRpcProvider("https://polygon-mainnet.g.alchemy.com/v2/nt_Vk273qpsz3qIEWkHi_ACuCXOXNdro");
+      : chain === "gnosis"
+      ? new ethers.JsonRpcProvider("https://gnosis.drpc.org")
+      : new ethers.JsonRpcProvider("https://polygon-mainnet.g.alchemy.com/v2/nt_Vk273qpsz3qIEWkHi_ACuCXOXNdro"); // assume it's polygon mainnet
     
     const signer = new ethers.Wallet(process.env.PKEY, provider);
     const tx = await signer.sendTransaction(tx_data);
