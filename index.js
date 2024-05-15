@@ -11,6 +11,8 @@ exports.handler = async function(event) {
       ? new ethers.JsonRpcProvider("https://gateway.tenderly.co/public/sepolia")
       : chain === "gnosis"
       ? new ethers.JsonRpcProvider("https://gnosis.drpc.org")
+      : chain === "optimism"
+      ? new ethers.JsonRpcProvider("https://mainnet.optimism.io")
       : new ethers.JsonRpcProvider("https://polygon-mainnet.g.alchemy.com/v2/nt_Vk273qpsz3qIEWkHi_ACuCXOXNdro"); // assume it's polygon mainnet
     
     const signer = new ethers.Wallet(process.env.PKEY, provider);
